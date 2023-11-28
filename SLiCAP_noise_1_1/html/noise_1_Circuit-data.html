@@ -1,0 +1,105 @@
+<a id=""></a><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta name="Language" content="English"/>
+<title>"Circuit data"</title><link rel="stylesheet" href="css/slicap.css">
+<script>MathJax = {tex:{tags: 'ams', inlineMath:[['$','$'],]}, svg:{fontCache:'global'}};</script>
+<script type="text/javascript" id="MathJax-script" async  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head><body><div id="top"><h1>Circuit data</h1></div>
+<h2>Circuit diagram</h2>
+<figure><img src="img/noise_1.svg" alt="" style="width:500px">
+</figure>
+<h2>Netlist: noise_1.cir</h2>
+<pre>noise_1
+V1 N005 0 V value=0 dc=0 dcvar=0 noise=0
+R1 N001 N005 R value={R_s} noisetemp={T} noiseflow=0 dcvar=0 dcvarlot=0
+I1 N004 0 I value=0 dc=0 dcvar=0 noise={4*k*T*n*Gamma*g_m}
+H1 N003 in N004 N006 {1/g_m}
+F1 in 0 N006 0 {s/(2*pi*f_T)}
+V2 N003 N002 V value=0 dc=0 dcvar=0 noise={4*k*T*n*Gamma*f_ell^AF/g_m/f}
+L1 N001 N002 L value={L_s} iinit=0
+E1 out 0 in 0 {1/(s*tau_i)}
+R2 N002 0 R value={R_t} noisetemp={T} noiseflow=0 dcvar=0 dcvarlot=0
+.param f_ell={alpha*f_T^(1/AF)} f_T={g_m/(2*pi*c_iss)}
+.param n=1.35 Gamma={2/3} AF=1 alpha=0.0033
+.param L_s = 120m R_s=875 tau_i=15.9u
+.param R_t=10k
+* Rceive coil (resonance  not modeled > 150 kHz)
+* Shot noise associated with the DC gate current is not modeled (IG = 0)
+* Channel current noise
+* Input-referred flicker noise
+* Gate-\ninduced\nnoise
+* Input-\nreferred\nchannel\nvoltage\nnoise
+* Integrating voltage amplifier
+* Termination resistor
+.end
+</pre>
+<table><caption>Table: Element data of expanded netlist 'noise_1'</caption>
+<tr><th class="left">RefDes</th><th class="left">Nodes</th><th class="left">Refs</th><th class="left">Model</th><th class="left">Param</th><th class="left">Symbolic</th><th class="left">Numeric</th></tr>
+<tr><td class="left">E1</td><td class = "left">out 0 in 0 </td><td class = "left"></td><td class = "left">E</td>
+<td class="left">value</td><td class="left">$\frac{1}{s \tau_{i}}$</td><td class="left">$\frac{6.289 \cdot 10^{4}}{s}$</td></tr>
+<tr><td class="left">F1</td><td class = "left">in 0 N006 0 </td><td class = "left"></td><td class = "left">F</td>
+<td class="left">value</td><td class="left">$\frac{0.5 s}{\pi f_{T}}$</td><td class="left">$\frac{c_{iss} s}{g_{m}}$</td></tr>
+<tr><td class="left">H1</td><td class = "left">N003 in N004 N006 </td><td class = "left"></td><td class = "left">H</td>
+<td class="left">value</td><td class="left">$\frac{1}{g_{m}}$</td><td class="left">$\frac{1}{g_{m}}$</td></tr>
+<tr><td class="left">I1</td><td class = "left">N004 0 </td><td class = "left"></td><td class = "left">I</td>
+<td class="left">value</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dc</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvar</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noise</td><td class="left">$4 \Gamma T g_{m} k n$</td><td class="left">$1.491 \cdot 10^{-20} g_{m}$</td></tr>
+<tr><td class="left">L1</td><td class = "left">N001 N002 </td><td class = "left"></td><td class = "left">L</td>
+<td class="left">value</td><td class="left">$L_{s}$</td><td class="left">$0.12$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">iinit</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td class="left">R1</td><td class = "left">N001 N005 </td><td class = "left"></td><td class = "left">R</td>
+<td class="left">value</td><td class="left">$R_{s}$</td><td class="left">$875$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noisetemp</td><td class="left">$T$</td><td class="left">$300$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noiseflow</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvar</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvarlot</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td class="left">R2</td><td class = "left">N002 0 </td><td class = "left"></td><td class = "left">R</td>
+<td class="left">value</td><td class="left">$R_{t}$</td><td class="left">$1.0 \cdot 10^{4}$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noisetemp</td><td class="left">$T$</td><td class="left">$300$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noiseflow</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvar</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvarlot</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td class="left">V1</td><td class = "left">N005 0 </td><td class = "left"></td><td class = "left">V</td>
+<td class="left">value</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dc</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvar</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noise</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td class="left">V2</td><td class = "left">N003 N002 </td><td class = "left"></td><td class = "left">V</td>
+<td class="left">value</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dc</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">dcvar</td><td class="left">$0$</td><td class="left">$0$</td></tr>
+<tr><td></td><td></td><td></td><td></td><td class="left">noise</td><td class="left">$\frac{4 \Gamma T f_{\ell}^{AF} k n}{f g_{m}}$</td><td class="left">$\frac{7.832 \cdot 10^{-24}}{c_{iss} f}$</td></tr>
+</table>
+<table><caption>Table: Parameter definitions in 'noise_1'.</caption>
+<tr><th class="left">Name</th><th class="left">Symbolic</th><th class="left">Numeric</th></tr>
+<tr><td class="left">$AF$</td><td class="left">$1$</td><td class="left">$1$</td></tr>
+<tr><td class="left">$\Gamma$</td><td class="left">$0.6667$</td><td class="left">$0.6667$</td></tr>
+<tr><td class="left">$L_{s}$</td><td class="left">$0.12$</td><td class="left">$0.12$</td></tr>
+<tr><td class="left">$R_{s}$</td><td class="left">$875$</td><td class="left">$875$</td></tr>
+<tr><td class="left">$R_{t}$</td><td class="left">$1.0 \cdot 10^{4}$</td><td class="left">$1.0 \cdot 10^{4}$</td></tr>
+<tr><td class="left">$T$</td><td class="left">$300$</td><td class="left">$300$</td></tr>
+<tr><td class="left">$\alpha$</td><td class="left">$0.0033$</td><td class="left">$0.0033$</td></tr>
+<tr><td class="left">$f_{T}$</td><td class="left">$\frac{0.5 g_{m}}{\pi c_{iss}}$</td><td class="left">$\frac{0.1592 g_{m}}{c_{iss}}$</td></tr>
+<tr><td class="left">$f_{\ell}$</td><td class="left">$\alpha f_{T}^{\frac{1}{AF}}$</td><td class="left">$\frac{0.0005252 g_{m}}{c_{iss}}$</td></tr>
+<tr><td class="left">$k$</td><td class="left">$1.381 \cdot 10^{-23}$</td><td class="left">$1.381 \cdot 10^{-23}$</td></tr>
+<tr><td class="left">$n$</td><td class="left">$1.35$</td><td class="left">$1.35$</td></tr>
+<tr><td class="left">$\tau_{i}$</td><td class="left">$1.59 \cdot 10^{-5}$</td><td class="left">$1.59 \cdot 10^{-5}$</td></tr>
+</table>
+<table><caption>Table: Parameters without definition in 'noise_1.</caption>
+
+<tr><th class="left">Name</th></tr>
+<tr><td class="left">$g_{m}$</td></tr>
+<tr><td class="left">$c_{iss}$</td></tr>
+<tr><td class="left">$s$</td></tr>
+</table>
+<!-- INSERT -->
+<div id="footnote">
+<p>Go to <a href="noise_1_index.html">noise_1_index</a></p>
+<p>SLiCAP: Symbolic Linear Circuit Analysis Program, Version 1.6.0 &copy 2009-2023 SLiCAP development team</p>
+<p>For documentation, examples, support, updates and courses please visit: <a href="https://analog-electronics.tudelft.nl">analog-electronics.tudelft.nl</a></p>
+<p>Last project update: 2023-11-28 17:32:21</p>
+</div></body></html>
