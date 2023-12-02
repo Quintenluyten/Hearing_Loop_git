@@ -33,4 +33,4 @@ SPHINXPATH  = 'sphinx/' # path for Sphinx output
 PROJECT    = 'MOS noise EX'
 AUTHOR     = 'moelb'
 CREATED    = '2023-11-30 10:39:53.918587'
-LASTUPDATE = '2023-11-30 14:53:27.829960'
+LASTUPDATE = '2023-12-03 00:38:12.812338'
