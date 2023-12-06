@@ -1,0 +1,15 @@
+MOSnoiseR
+V1 N004 0 V value=0 dc=0 dcvar=0 noise=0
+R1 N001 N004 R value={R_s} noisetemp={T} noiseflow=0 dcvar=0 dcvarlot=0
+I1 N003 0 I value=0 dc=0 dcvar=0 noise={4*k*T*n*Gamma*g_m}
+H1 N002 out N003 N005 {1/g_m}
+F1 out 0 N005 0 {s/(2*pi*f_T)}
+V2 N002 N001 V value=0 dc=0 dcvar=0 noise={4*k*T*n*Gamma*f_ell/g_m/f}
+.param f_ell={alpha*f_T} f_T={g_m/(2*pi*c_iss)}
+.param n=1.35 Gamma={2/3} alpha=0.0033
+* Shot noise associated with the DC gate current is not modeled (IG = 0)
+* Channel current noise
+* Input-referred flicker noise
+* Gate-\ninduced\nnoise
+* Input-\nreferred\nchannel\nvoltage\nnoise
+.end

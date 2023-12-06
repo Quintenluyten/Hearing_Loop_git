@@ -1,0 +1,6 @@
+"MOSnoiseR-EKV"
+XU1 N001 0 out NM18_noise ID={ID} IG={IG} W={W} L={L}
+R1 N001 P001 R value={R_s} noisetemp={T} noiseflow=0 dcvar=0 dcvarlot=0
+V1 P001 0 V value=0 dc=0 dcvar=0 noise=0
+.lib CMOS18-1.lib
+.end
