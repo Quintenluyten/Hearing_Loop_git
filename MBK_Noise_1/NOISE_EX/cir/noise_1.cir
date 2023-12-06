@@ -12,6 +12,8 @@ R2 N002 0 R value={R_t} noisetemp={T} noiseflow=0 dcvar=0 dcvarlot=0
 .param n=1.35 Gamma={2/3} AF=1 alpha=0.0033
 .param L_s = 120m R_s=875 tau_i=15.9u
 .param R_t=10k
+.param k = 1.38e-23
+.param T = 300
 * Rceive coil (resonance  not modeled > 150 kHz)
 * Shot noise associated with the DC gate current is not modeled (IG = 0)
 * Channel current noise

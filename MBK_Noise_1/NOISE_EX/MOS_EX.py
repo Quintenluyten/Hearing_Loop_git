@@ -26,6 +26,12 @@ alpha  = sp.Symbol('alpha', positive=True)
 f_L    = sp.Symbol('f_ell', positive=True)
 Gamma  = sp.Symbol('Gamma', positive=True)
 Gamman = i1.getParValue('Gamma')
+R_s  = sp.Symbol('R_s', positive=True)
+R_sn = i1.getParValue('R_s')
+R_t  = sp.Symbol('R_t', positive=True)
+R_tn = i1.getParValue('R_t')
+L_s  = sp.Symbol('L_s', positive=True)
+L_sn = i1.getParValue('L_s')
 n      = sp.Symbol('n', positive=True)
 nn     = i1.getParValue('n')
 k      = sp.Symbol('k', positive=True)
@@ -42,14 +48,28 @@ fmax  = 6e3
 fmin  = 20
 
 
-substDict = {f_max: fmax,
+substDict_inclkT = {f_max: fmax,
              f_min: fmin,
              alpha: 0.0033,
              f_T: 50E9,
              Gamma: Gamman,
              n: nn,
+             R_s: R_sn,
+             R_t: R_tn,
+             L_s: L_sn,
              T: Tn,
              k: kn,
+             tau_i: tau_i_n}
+
+substDict_exclkT = {f_max: fmax,
+             f_min: fmin,
+             alpha: 0.0033,
+             f_T: 50E9,
+             Gamma: Gamman,
+             n: nn,
+             R_s: R_sn,
+             R_t: R_tn,
+             L_s: L_sn,
              tau_i: tau_i_n}
 
 Showstopper=10.6e-6
@@ -69,16 +89,17 @@ noise2html(noiseResult, label='symNoise')
 
 symOnoise1 = assumePosParams(noiseResult.onoise)
 
-
-
+symOnoise11 = sp.simplify(symOnoise1.subs(substDict_exclkT))
+htmlPage("Simplified symbolic expression")
+eqn2html('symOnoise11', symOnoise11, label = 'symplified noise', labelText = 'test')
 
 i1.setSimType('numeric')
 
 
 
 
-symOnoise2 = sp.simplify(symOnoise1.subs(f_T, g_m/(2*sp.pi*c_iss)))
-symOnoise3 = sp.simplify(symOnoise1.subs(f_L, alpha*f_T))
+symOnoise2 = sp.simplify(symOnoise11.subs(f_T, g_m/(2*sp.pi*c_iss)))
+symOnoise3 = sp.simplify(symOnoise11.subs(f_L, alpha*f_T))
 
 
 diff_SymOnoise3_g_m = sp.diff(symOnoise3, g_m)
